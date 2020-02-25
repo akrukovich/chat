@@ -1,9 +1,9 @@
 language: python
 python:
   - "3.6"
-deploy:
-  provider: heroku
-  api_key:
-    secure: "3d7d3b02-714c-40d7-81c0-f29149261ce2"
-  app: chatikisover
+install:
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - python manage.py test
 
