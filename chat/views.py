@@ -14,8 +14,7 @@ def new_room(request):
     new_room = None
     while not new_room:
         with transaction.atomic():
-            # label = ''.join(['Chat', str(ChatRoom.objects.all().last().id)])
-            label = 'Chat1'
+            label = ''.join(['Chat', str(ChatRoom.objects.all().last().id)])
             if ChatRoom.objects.filter(label=label).exists():
                 continue
             new_room = ChatRoom.objects.create(label=label)
