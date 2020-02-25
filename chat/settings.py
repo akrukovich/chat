@@ -55,7 +55,8 @@ TEMPLATES = (
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default="postgresql://postgres:12345678@localhost:5432/test_db")
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    # 'default': dj_database_url.config(default="postgresql://postgres:12345678@localhost:5432/test_db")
 }
 
 AUTH_PASSWORD_VALIDATORS = (
@@ -103,7 +104,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "asgi_redis.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
         },
         "ROUTING": "chat.routing.channel_routing",
     },
