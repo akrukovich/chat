@@ -11,8 +11,8 @@ class ChatRoom(models.Model):
 
 
 class Message(models.Model):
-    room = models.ForeignKey(ChatRoom, related_name='messages', on_delete=models.CASCADE)
-    handle = models.TextField()
+    room = models.ForeignKey(ChatRoom, related_name='messages')
+    handle = models.EmailField()
     message = models.TextField(max_length=100)
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)
 
