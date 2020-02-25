@@ -1,5 +1,4 @@
 import random
-import string
 from django.db import transaction
 from django.shortcuts import render, redirect
 from .models import ChatRoom, Message
@@ -14,7 +13,7 @@ def new_room(request):
     new_room = None
     while not new_room:
         with transaction.atomic():
-            label = ''.join(['Chat', str(ChatRoom.objects.all().last().id)])
+            label = ''.join(['Chat', str(random.randint(1, 100))])
             if ChatRoom.objects.filter(label=label).exists():
                 continue
             new_room = ChatRoom.objects.create(label=label)
